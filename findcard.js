@@ -13,9 +13,9 @@ module.exports = function(req, res, next){
             cardName += textSplit[i] + " ";
         }
     }
-    mtgapi(cardName, function(name){
+    mtgapi(cardName, function(name, cardUrl){
         var botPayload = {
-            text : name
+            text : "<a href=" + cardUrl +  ">" + name + "</a>"
         };
 
         // avoid infinite loop
@@ -33,7 +33,8 @@ function mtgapi(req, cb){
     request.get(deckbrew + req, function(error, res, cards){
         let cardObj = JSON.parse(cards);
         name = cardObj[0].name;
-        cb(name);
+        cardUrl = cardObj[0].store_url;
+        cb(name, cardUrl);
     });
 }
 // mtgapi("goblin rabblemaster", console.log);
