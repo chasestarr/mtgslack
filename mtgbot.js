@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const hellobot = require('./hellobot.js');
+const findcard = require('./findcard.js');
 
 let app = express();
 let port = process.env.PORT || 3000;
@@ -14,6 +15,9 @@ app.get('/', function(req, res) { res.status(200).send('Hello World!') });
 
 //hellobot route
 app.post('/hello', hellobot);
+
+//card route
+app.post('/card', findcard);
 
 // error handler
 app.use(function (err, req, res, next) {
