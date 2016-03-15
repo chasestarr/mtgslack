@@ -1,7 +1,6 @@
 'use strict'
 const express = require('express');
 const bodyParser = require('body-parser');
-const hellobot = require('./hellobot.js');
 const findcard = require('./findcard.js');
 
 let app = express();
@@ -12,9 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //test route
 app.get('/', function(req, res) { res.status(200).send('Hello World!') });
-
-//hellobot route
-app.post('/hello', hellobot);
 
 //card route
 app.post('/card', findcard);
