@@ -1,10 +1,11 @@
 'use strict'
 module.exports = function(req, res, next){
     let text = req.body.text;
-    let usr = req.body.user_name;
-    let card = text.substr(text.indexOf(" ") + 1);
+    let userName = req.body.user_name;
+    // let usr = req.body.user_name;
+    // let card = text.substr(text.indexOf(" ") + 1);
     var botPayload = {
-        text : res
+        text : userName
     };
 
     // avoid infinite loop
