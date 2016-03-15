@@ -13,9 +13,15 @@ module.exports = function(req, res, next){
             cardName += textSplit[i] + " ";
         }
     }
-    mtgapi(cardName, function(name, cardUrl){
+    mtgapi(cardName, function(card){
         var botPayload = {
-            text : "<a href=" + cardUrl +  ">" + name + "</a>"
+            "text": "Here's what I found about " + card.name,
+            "attachments": [
+                {
+                    "text": "TCG Player link: " + card.url,
+                    "image_url": card.image_url
+                }
+            ]
         };
 
         // avoid infinite loop
@@ -32,9 +38,12 @@ function mtgapi(req, cb){
     let name = "";
     request.get(deckbrew + req, function(error, res, cards){
         let cardObj = JSON.parse(cards);
-        name = cardObj[0].name;
-        cardUrl = cardObj[0].store_url;
-        cb(name, cardUrl);
+        let card = {
+            name: cardObj[0].name,
+            url: cardObj[0].store_url,
+            image_url: cardObj[0].editions[0].image_url
+        };
+        cb(card);
     });
 }
 // mtgapi("goblin rabblemaster", console.log);
