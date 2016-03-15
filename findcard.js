@@ -4,7 +4,7 @@ module.exports = function(req, res, next){
     let usr = req.body.user_name;
     let card = text.substr(text.indexOf(" ") + 1);
     var botPayload = {
-        text : "card"
+        text : res
     };
 
     // avoid infinite loop
