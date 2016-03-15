@@ -1,20 +1,27 @@
 'use strict'
+const request = require('request');
+
 module.exports = function(req, res, next){
     let textIn = req.body.text;
     let userName = req.body.user_name;
     let textSplit = textIn.split(" ");
-    let textOut = "";
+    let cardName = "";
     for(let i = 1; i < textSplit.length; i++){
         if(i == textSplit.length - 1){
-            textOut += textSplit[i];
+            cardName += textSplit[i];
         } else {
-            textOut += textSplit[i] + " ";
+            cardName += textSplit[i] + " ";
         }
     }
-    // let usr = req.body.user_name;
-    // let card = text.substr(text.indexOf(" ") + 1);
+    let deckbrew = "https://api.deckbrew.com/mtg/cards/?name=";
+    let name = "";
+    request.get(deckbrew + cardName, function(error, res, cards){
+        let cardObj = JSON.parse(cards);
+        name = cards[0].url; 
+    });
+    
     var botPayload = {
-        text : textOut
+        text : name
     };
 
     // avoid infinite loop
