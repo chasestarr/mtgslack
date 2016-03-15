@@ -15,10 +15,11 @@ module.exports = function(req, res, next){
     }
     mtgapi(cardName, function(card){
         var botPayload = {
-            "text": "Here's what I found about " + card.name,
             "attachments": [
                 {
-                    "text": "TCG Player link: " + card.url,
+                    "title": card.name,
+                    "title_link": card.url,
+                    "color": "good",
                     "image_url": card.image_url
                 }
             ]
