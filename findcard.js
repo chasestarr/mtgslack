@@ -5,14 +5,20 @@ module.exports = function(req, res, next){
     let textIn = req.body.text;
     let userName = req.body.user_name;
     let textSplit = textIn.split(" ");
-    let cardName = "";
-    for(let i = 1; i < textSplit.length; i++){
+    let text = "";
+    for(let i = 2; i < textSplit.length; i++){
         if(i == textSplit.length - 1){
-            cardName += textSplit[i];
+            text += textSplit[i];
         } else {
-            cardName += textSplit[i] + " ";
+            text += textSplit[i] + " ";
         }
     }
+    
+    if(textSplit[1] == "card") reqCardName(text);
+      
+}
+
+function reqCardName(cardName){
     mtgapi(cardName, function(card){
         var botPayload = {
             "attachments": [
@@ -31,5 +37,5 @@ module.exports = function(req, res, next){
         } else {
         return res.status(200).end();
         }  
-    });  
+    });
 }
