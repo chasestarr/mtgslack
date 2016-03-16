@@ -15,24 +15,28 @@ module.exports = function(req, res, next){
         }
     }
     if(cmd == "card"){
-        mtgapi(cardName, function(card){
-            var botPayload = {
-                "attachments": [
-                    {
-                        "title": card.name,
-                        "title_link": card.url,
-                        "color": "good",
-                        "image_url": card.image_url
-                    }
-                ]
-            };
-
-            // avoid infinite loop
-            if (userName !== 'slackbot') {
-            return res.status(200).json(botPayload);
-            } else {
-            return res.status(200).end();
-            }  
-        });   
+        reqCardName(cardName);
     } 
+}
+
+function reqCardName(cardName){
+    mtgapi(cardName, function(card){
+        var botPayload = {
+            "attachments": [
+                {
+                    "title": card.name,
+                    "title_link": card.url,
+                    "color": "good",
+                    "image_url": card.image_url
+                }
+            ]
+        };
+
+        // avoid infinite loop
+        if (userName !== 'slackbot') {
+        return res.status(200).json(botPayload);
+        } else {
+        return res.status(200).end();
+        }  
+    });
 }
