@@ -5,7 +5,7 @@ module.exports = function(req, res, next){
     let textIn = req.body.text;
     let userName = req.body.user_name;
     let textSplit = textIn.split(" ");
-    let cmd = textIn[1];
+    let cmd = textSplit[1];
     let cardName = "";
     for(let i = 2; i < textSplit.length; i++){
         if(i == textSplit.length - 1){
