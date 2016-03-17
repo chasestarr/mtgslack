@@ -17,7 +17,7 @@ module.exports = function(req, cb){
 };
 
 function cardColor(c){
-    if(!c) { 
+    if(c == undefined) { 
         return "#808080"; 
     }
     if(c == "red"){ 
