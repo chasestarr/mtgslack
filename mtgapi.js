@@ -17,10 +17,18 @@ module.exports = function(req, cb){
 };
 
 function cardColor(c){
-    if(!c) { return "#808080"; }
-    if(c == "red"){ return "#FF0000"; }
-    else if(c == "green"){ return "#00FF00"; }
-    else if(c == "white"){ return "#404040"; }
-    else if(c == "blue"){ return "#0000FF"; }
-    else { return "#000000"; }
+    if(!c) { 
+        return "#808080"; 
+    }
+    if(c == "red"){ 
+        return "#FF0000"; 
+    } else if(c == "green"){ 
+        return "#00FF00"; 
+    } else if(c == "white"){ 
+        return "#404040"; 
+    } else if(c == "blue"){ 
+        return "#0000FF"; 
+    } else { 
+        return "#000000"; 
+    }
 }
