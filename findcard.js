@@ -21,7 +21,7 @@ module.exports = function(req, res, next){
                     {
                         "title": card.name,
                         "title_link": card.url,
-                        "color": card.color,
+                        "color": "good",
                         "image_url": card.image_url
                     }
                 ]
@@ -34,7 +34,5 @@ module.exports = function(req, res, next){
             return res.status(200).end();
             }  
         });   
-    } else if(cmd == "deck"){
-        
     }
 }
