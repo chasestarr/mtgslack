@@ -1,21 +1,22 @@
 'use strict'
 const mtgapi = require('./mtgapi.js');
+const reqDeck = require('./reqDeck.js');
 
 module.exports = function(req, res, next){
     let textIn = req.body.text;
     let userName = req.body.user_name;
     let textSplit = textIn.split(" ");
     let cmd = textSplit[1];
-    let cardName = "";
+    let txt = "";
     for(let i = 2; i < textSplit.length; i++){
         if(i == textSplit.length - 1){
-            cardName += textSplit[i];
+            txt += textSplit[i];
         } else {
-            cardName += textSplit[i] + " ";
+            txt += textSplit[i] + " ";
         }
     }
     if(cmd == "card"){
-        mtgapi(cardName, function(card){
+        mtgapi(txt, function(card){
             var botPayload = {
                 "attachments": [
                     {
