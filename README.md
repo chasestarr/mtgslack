@@ -1,8 +1,8 @@
 ##MTG Slack Bot
 
-Use the keyword `!mtg` to access mtgslack functions.
+Use the keyword `!mtg` to access *mtgslack* functions.
 
-The `card` function will return a card image and link to TCG Player for price information.
+The `card` function will return a card image and link to TCG Player with price information.
 ```
 !mtg card [CARD NAME]
 ```
